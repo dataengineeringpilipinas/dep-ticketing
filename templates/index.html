@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment System</title>
+</head>
+<body>
+    <header>
+        <h1>Appointment System</h1>
+        <p>Date: {{ today_date }}</p>
+    </header>
+
+    <h2>Book an Appointment</h2>
+    <form method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required>
+        <br>
+        <label for="time">Time Slot:</label>
+        <select id="time" name="time" required>
+            {% for slot in time_slots %}
+                <option value="{{ slot }}">{{ slot }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button type="submit">Book Appointment</button>
+    </form>
+
+    <!-- Display success message if SMS was sent -->
+    {% if message_sent %}
+        <p style="color: green;">Message sent successfully!</p>
+    {% endif %}
+
+    <!-- Include the appointments table -->
+    <div id="appointments-table">
+        {% include 'appointments.html' %}
+    </div>
+</body>
+</html>

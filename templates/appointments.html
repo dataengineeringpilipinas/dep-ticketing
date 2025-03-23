@@ -1,0 +1,19 @@
+<h2>Today's Appointments</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment[1] }}</td>  <!-- Name -->
+                <td>{{ appointment[2] }}</td>  <!-- Phone -->
+                <td>{{ appointment[3] }}</td>  <!-- Time -->
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
