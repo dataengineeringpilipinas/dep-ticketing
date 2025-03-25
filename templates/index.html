@@ -3,40 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appointment System</title>
+    <title>Barangay DEP Appointment System</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 2rem;
+        }
+        .appointment-card {
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .header-section {
+            background-color: #0d6efd;
+            color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .table-responsive {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .success-alert {
+            animation: fadeInOut 3s ease-in-out;
+            opacity: 0;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Appointment System</h1>
-        <p>Date: {{ today_date }}</p>
-    </header>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header-section text-center">   
+            <!-- Logo -->
+            <div class="mb-3">
+                <img src="{{ url_for('static', filename='images/barangay-dep.png') }}" 
+                    alt="Barangay DEP Logo" 
+                    style="height: 300px; width: auto;">
+            </div>                     
+            <h2>Barangay DEP</h2>
+            <h3>📅 Appointment System</h3>
+            <h5>Today's Date: {{ today_date }}</h5>
+        </div>
 
-    <h2>Book an Appointment</h2>
-    <form method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <br>
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" name="phone" required>
-        <br>
-        <label for="time">Time Slot:</label>
-        <select id="time" name="time" required>
-            {% for slot in time_slots %}
-                <option value="{{ slot }}">{{ slot }}</option>
-            {% endfor %}
-        </select>
-        <br>
-        <button type="submit">Book Appointment</button>
-    </form>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Appointment Booking Card -->
+                <div class="card appointment-card">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Book an Appointment</h2>
+                        
+                        <form method="POST" class="needs-validation" novalidate>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                                <div class="invalid-feedback">
+                                    Please provide your name.
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                                <div class="invalid-feedback">
+                                    Please provide your phone number.
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="time" class="form-label">Time Slot</label>
+                                <select class="form-select" id="time" name="time" required>
+                                    <option value="" selected disabled>Select a time slot</option>
+                                    {% for slot in time_slots %}
+                                        <option value="{{ slot }}">{{ slot }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a time slot.
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-calendar-check"></i> Book Appointment
+                                </button>
+                            </div>
+                        </form>
 
-    <!-- Display success message if SMS was sent -->
-    {% if message_sent %}
-        <p style="color: green;">Message sent successfully!</p>
-    {% endif %}
+                        <!-- Success Message -->
+                        {% if message_sent %}
+                        <div class="alert alert-success success-alert mt-3 text-center" role="alert">
+                            <i class="bi bi-check-circle-fill"></i> Appointment booked and message sent successfully!
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
 
-    <!-- Include the appointments table -->
-    <div id="appointments-table">
-        {% include 'appointments.html' %}
+                <!-- Appointments Table -->
+                <div class="card appointment-card mt-4">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Today's Appointments</h2>
+                        
+                        <div class="table-responsive">
+                            {% include 'appointments.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Form Validation Script -->
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+            
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+            
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
 </body>
 </html>
