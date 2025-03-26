@@ -17,7 +17,14 @@
                         {% for appointment in appointments %}
                         <tr>
                             <td class="ps-4">{{ appointment[1] }}</td>
-                            <td>{{ appointment[2] }}</td>
+                            <td>
+                                {% set phone = appointment[2] %}
+                                {% if phone|length > 7 %}
+                                    {{ phone[:3] ~ '****' ~ phone[-4:] }}
+                                {% else %}
+                                    {{ phone }}  {# fallback for short numbers #}
+                                {% endif %}
+                            </td>
                             <td class="pe-4">{{ appointment[3][11:16] if appointment[3]|length > 10 else appointment[3] }}</td>
                         </tr>
                         {% endfor %}

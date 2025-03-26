@@ -88,7 +88,7 @@ def send_sms(phone, name, time):
     response = requests.post(
         sms_endpoint,
         json=payload,
-        auth=HTTPBasicAuth("engramar@code.sydney", "XXXXXXXXXXXXXX")
+        auth=HTTPBasicAuth("engramar@code.sydney", "XXXXXX")
     )
     
     # Check if the SMS was sent successfully
@@ -119,7 +119,7 @@ def home():
     appointments = get_today_appointments()  # Re-fetch appointments from the database
     today_date = datetime.now().strftime('%Y-%m-%d')
     return render_template('index.html', time_slots=time_slots, appointments=appointments, today_date=today_date, message_sent=message_sent)
-
+    
 if __name__ == '__main__':
     init_db()  # Initialize the database
     app.run(debug=True)
