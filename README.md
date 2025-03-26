@@ -3,7 +3,7 @@ https://depticketing.pythonanywhere.com/
 
 #### A [Puso Project](https://www.thepusoproject.ph/) by [Data Engineering Pilipinas](https://dataengineering.ph/)
 
-Images here 
+![Barangay Appointment App](https://github.com/user-attachments/assets/67d31901-85b0-4fa8-926e-46845da8e4d3)
 
 
 ## Pre-requisites
@@ -25,8 +25,16 @@ To join, you just need the enough basic knowledge of Python, Flask and GitHub PR
 1. Add a new app and choose deploy app manually.
 2. Enter bash and clone your Github repo.
 3. Go to Files and correct the location of your appointments.db.
-4. Edit your WSGI like so: 
+4. Edit your WSGI similar to the below: 
+```bash
+import sys
+#
+path = '/home/depticketing/dep-ticketing'
+if path not in sys.path:
+    sys.path.append(path)
+#
+from app import app as application  # noqa
+```
 5. Reload app.
 6. If no errors, you should have the app running in production.
-
 
