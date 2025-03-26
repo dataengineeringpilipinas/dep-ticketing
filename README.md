@@ -1,7 +1,7 @@
 # Barangay DEP Appointment App
 https://depticketing.pythonanywhere.com/
 
-#### A [Puso Project](https://www.thepusoproject.ph/) project by [Data Engineering Pilipinas](https://dataengineering.ph/)
+#### A [Puso Project](https://www.thepusoproject.ph/) by [Data Engineering Pilipinas](https://dataengineering.ph/)
 
 Images here 
 
