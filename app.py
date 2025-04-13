@@ -88,7 +88,7 @@ def send_sms(phone, name, time):
     response = requests.post(
         sms_endpoint,
         json=payload,
-        auth=HTTPBasicAuth("engramar@code.sydney", "XXXXXX")
+        auth=HTTPBasicAuth("engramar@code.sydney", "BA405B6A-4D4C-DF61-BE11-FF310F62C258")
     )
     
     # Check if the SMS was sent successfully
