@@ -38,3 +38,5 @@ from app import app as application  # noqa
 5. Reload app.
 6. If no errors, you should have the app running in production.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
