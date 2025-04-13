@@ -38,5 +38,7 @@ from app import app as application  # noqa
 5. Reload app.
 6. If no errors, you should have the app running in production.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+⚠️ Important: This application is released under [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT).
+If you choose to use or reuse this app, you are solely responsible for ensuring that your implementation complies with applicable privacy laws and data protection regulations.
+The original developers are not liable for any privacy-related issues, data breaches, or misuse resulting from your use of this app.
